@@ -40,12 +40,16 @@ module.exports = function (options) {
 
 		try {
 			content = file.contents.toString();
-			matches = content.match(term);
+// 			matches = content.match(term);
 
-			if(matches !== null) {
-				matches.forEach(function(match) {
-					options.fn(match, file.clone());
-				});
+// 			if(matches !== null) {
+// 				matches.forEach(function(match) {
+// 					options.fn(match, file.clone());
+// 				});
+// 			}
+			let match;
+			while (match = term.exec(content)) {
+				options.fn(match, file.clone());
 			}
 		}
 		catch (err) {
